@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  test:
+    image: containous/whoami:latest
+    container_name: test
+    env:
+      - "FOO=bar"
+      - "BAR=baz"
+    volumes:
+      - "TEST:/test"
+    ports:
+      - "80:80"
+    networks:
+      - default
+volumes:
+  TEST:
+networks:
+  default:
