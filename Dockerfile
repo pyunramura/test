@@ -8,8 +8,7 @@ RUN "apk update && apk add --no-cache lighttpd && \
   mkdir -p /var/www/localhost/htdocs /var/log/lighttpd /var/lib/lighttpd && \
   sed -i -r 's#\#.*server.port.*=.*#server.port          = 80#g' /etc/lighttpd/lighttpd.conf && \
   sed -i -r 's#\#.*server.event-handler = "linux-sysepoll".*#server.event-handler = "linux-sysepoll"#g' /etc/lighttpd/lighttpd.conf && \
-  chown -R lighttpd:lighttpd /var/www/localhost/ /var/lib/lighttpd /var/log/lighttpd && \
-  rc-update add lighttpd default && rc-service lighttpd restart && echo -e "Hello World!\nPlease moune a new index.html to /var/www/localhost/htdocs" > /var/www/localhost/htdocs/index.html
+  chown -R lighttpd:lighttpd /var/www/localhost/ /var/lib/lighttpd /var/log/lighttpd"
 USER lighttpd
 EXPOSE 80
 HEALTHCHECK --interval=1m --timeout=1s \
