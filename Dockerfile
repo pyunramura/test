@@ -1,6 +1,6 @@
 FROM alpine:3.9
-LABEL name="test" \
-      maintainer="Test User <testuser@testsite.org>" \
+LABEL name="test1" \
+      maintainer="Test Users <testuser@testsite.org>" \
       version="1.0.0"
 COPY run.sh /
 RUN "apk update && apk add --no-cache lighttpd && \
