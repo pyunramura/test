@@ -140,5 +140,4 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/test:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ needs.release.outputs.new_version }}
-            ghcr.io/pyunramura/test:latest
-            ghcr.io/pyunramura/test:1.0.4
+            https://docker.pkg.github.com/pyunramura/test:1.1.1
