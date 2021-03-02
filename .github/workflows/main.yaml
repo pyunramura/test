@@ -103,8 +103,8 @@ jobs:
   ship:
     needs: [ lint, release ]
     runs-on: ubuntu-latest
-    env:
-      - app: test-app
+    # env:
+    #   - app: test-app
     steps:
       - uses: actions/checkout@v2
 
@@ -135,7 +135,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/app:${{ needs.release.outputs.new_version }}
-            ghcr.io/${{ github.repository_owner }}/app:latest
-            ghcr.io/${{ github.repository_owner }}/app:${{ needs.release.outputs.new_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/testfugu:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ needs.release.outputs.new_version }}
+            ghcr.io/${{ github.repository_owner }}/test:latest
+            ghcr.io/${{ github.repository_owner }}/test:${{ needs.release.outputs.new_version }}
