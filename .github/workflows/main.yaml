@@ -141,4 +141,4 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/test:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ needs.release.outputs.new_version }}
             ghcr.io/pyunramura/test:latest
-            ghcr.io/pyunramura/test:1.0.3
+            ghcr.io/pyunramura/test:1.0.4
