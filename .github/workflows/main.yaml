@@ -27,7 +27,7 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir:
-            !/.github/**/*.yaml
+            /*.yaml
           config_data: |
             extends: default
             rules:
