@@ -3,6 +3,8 @@ name: Create Release
 
 on:
   push:
+    paths-ignore:
+      - '.github/workflows/*'
     branches: [ main ]
   # pull_request:
   #   types: [ assigned, opened, synchronize, reopened ]
@@ -26,7 +28,7 @@ jobs:
       - name: Lint Yaml
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: docker-compose.yaml
+          file_or_dir: '*.yaml'
           config_data: |
             extends: default
             rules:
