@@ -2,4 +2,4 @@
 
 this is a test repo
 
-*NOTE* something here
+*NOTE* Who knew github actions was paid for private repos?

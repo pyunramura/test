@@ -3,7 +3,7 @@ version: '3.7'
 services:
   test:
     image: containous/whoami:latest
-    container_name: test
+    container_name: test-docker
     env:
       - "FOO=bar"
       - "BAR=baz"
