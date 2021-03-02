@@ -36,7 +36,7 @@ jobs:
       - name: Lint Shell Script
         uses: azohra/shell-linter@latest
         with:
-          path: "run,/**/*.sh"
+          path: "run.sh"
 
   # release:
   #   needs: [ lint ]
