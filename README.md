@@ -1,3 +1,5 @@
 # test
 
-this is a test repo2
+this is a test repo
+
+*NOTE* something here
