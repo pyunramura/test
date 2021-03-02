@@ -27,7 +27,7 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir:
-            /docker-comopose.yaml
+            /docker-compose.yaml
           config_data: |
             extends: default
             rules:
