@@ -26,7 +26,7 @@ jobs:
       - name: Lint Yaml
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: docker-compose.yaml
+          file_or_dir: *.yaml
           config_data: |
             extends: default
             rules:
@@ -36,7 +36,7 @@ jobs:
       - name: Lint Shell Script
         uses: azohra/shell-linter@latest
         with:
-          path: "run.sh"
+          path: "run.sh,run,/**/*.sh"
 
   # release:
   #   needs: [ lint ]
