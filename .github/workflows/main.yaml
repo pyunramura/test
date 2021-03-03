@@ -6,45 +6,42 @@ on:
     paths-ignore:
       - '.github/workflows/*'
     branches: [ main ]
-  # pull_request:
-  #   types: [ assigned, opened, synchronize, reopened ]
-  #   branches: [ main ]
 env:
   APP: test
   USER: pyunramura
   EMAIL: pyunramura@users.noreply.github.com
 jobs:
-#   lint:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           ref: ${{ github.head_ref }}
-#           fetch-depth: 0
-#       - name: Lint Dockerfile
-#         uses: luke142367/Docker-Lint-Action@v1.0.0
-#         with:
-#           target: Dockerfile
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       - name: Lint Yaml
-#         uses: ibiqlik/action-yamllint@v3
-#         with:
-#           file_or_dir: 'docker-compose.yaml'
-#           config_data: |
-#             extends: default
-#             rules:
-#               new-line-at-end-of-file: disable
-#               trailing-spaces:
-#                 level: warning
-#       - name: Lint Shell Script
-#         uses: azohra/shell-linter@latest
-#         with:
-#           path: "run.sh,run,/**/*.sh"
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Lint Dockerfile
+        uses: luke142367/Docker-Lint-Action@v1.0.0
+        with:
+          target: Dockerfile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lint Yaml
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: 'docker-compose.yaml'
+          config_data: |
+            extends: default
+            rules:
+              new-line-at-end-of-file: disable
+              trailing-spaces:
+                level: warning
+      - name: Lint Shell Script
+        uses: azohra/shell-linter@latest
+        with:
+          path: "run.sh,run,/**/*.sh"
 
   release:
-    # needs: [ lint ]
+    needs: [ lint ]
     runs-on: ubuntu-latest
     outputs:
           new_version: ${{ steps.bump-semver.outputs.new_version }}
@@ -60,7 +57,6 @@ jobs:
         id: release-label
         if: ${{ steps.get-merged-pull-request.outputs.title != null }}
         with:
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: ${{ steps.get-merged-pull-request.outputs.labels }}
 
       - uses: actions-ecosystem/action-get-latest-tag@v1
@@ -107,8 +103,7 @@ jobs:
             The new version [${{ steps.bump-semver.outputs.new_version }}](https://github.com/${{ github.repository }}/releases/tag/${{ steps.bump-semver.outputs.new_version }}) has been released :tada:
 
   ship:
-    # needs: [ lint, release ]
-    needs: [ release ]
+    needs: [ lint, release ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
