@@ -4,7 +4,7 @@ name: Validate Dockerfile for Dependabot use
 on:
   push:
     paths:
-      - '**/Dockerfile.yaml'
+      - '**/Dockerfile'
     branches: [ main ]
 
 jobs:
