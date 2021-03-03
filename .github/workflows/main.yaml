@@ -133,10 +133,12 @@ jobs:
       - name: Display the path
         shell: bash
         run: |
-          TAG_MAJ=$(${{ needs.release.outputs.new_version }} | cut -f 1 -d '.')
-          TAG_MIN=$(${{ needs.release.outputs.new_version }} | cut -f 1,2 -d '.')
-          echo $TAG_MIN
-          echo $TAG_MAJ
+          TAG_MAJ=$(echo ${{ needs.release.outputs.new_version }} | cut -f 1 -d '.')
+          TAG_MIN=$(echo ${{ needs.release.outputs.new_version }} | cut -f 1,2 -d '.')
+          echo "::set-env name=TAG_MAJ::$TAG_MAJ"
+          echo "::set-env name=TAG_MIN::$TAG_MIN"
+          echo Major is $TAG_MAJ
+          echo Minor is $TAG_MIN
 
       - name: Build and push
         uses: docker/build-push-action@v2
