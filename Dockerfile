@@ -1,7 +1,7 @@
 FROM alpine:3.13
-LABEL name="test" \
-      maintainer="Test User <testuser@testsite.org>" \
-      version="1.2.13"
+# LABEL name="test" \
+#       maintainer="Test User <testuser@testsite.org>" \
+#       version="1.2.13"
 COPY run.sh /
 RUN apk update && apk add --no-cache lighttpd
 RUN chmod 755 /run.sh
