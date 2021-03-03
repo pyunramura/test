@@ -13,7 +13,6 @@ on:
     branches:
       - main
 
-name: 'Trigger: Push action'
 jobs:
   write_good_job:
     runs-on: ubuntu-latest
