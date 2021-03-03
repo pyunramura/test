@@ -1,5 +1,5 @@
 FROM alpine:3.13
-LABEL name="test-app" \
+LABEL name="test" \
       maintainer="Test User <testuser@testsite.org>" \
       version="1.2.13"
 COPY run.sh /
