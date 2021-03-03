@@ -2,7 +2,8 @@
 name: Create Release
 
 on:
-  push:
+  # push:
+  pull_request:
     paths-ignore:
       - '.github/workflows/*'
     branches: [ main ]
@@ -11,6 +12,8 @@ on:
   #   branches: [ main ]
 env:
   APP: test
+  USER: pyunramura
+  EMAIL: pyunramura@users.noreply.github.com
 jobs:
 #   lint:
 #     runs-on: ubuntu-latest
@@ -156,9 +159,10 @@ jobs:
           platforms: linux/amd64
           push: true
           labels: |
-            name: test
-            maintainer: Test User <testuser@testsite.org>
-            version: 1.2.13
+            name: ${{ env.APP }}
+            maintainer: ${{ env.USER }} <${{ env.EMAIL }}>
+            version: ${{ needs.release.outputs.new_version }}
+            architecture: amd64
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}
@@ -176,6 +180,11 @@ jobs:
           context: .
           platforms: linux/arm64
           push: true
+          labels: |
+            name: ${{ env.APP }}
+            maintainer: ${{ env.USER }} <${{ env.EMAIL }}>
+            version: ${{ needs.release.outputs.new_version }}
+            architecture: arm64
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:latest-arm
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}-arm
@@ -193,6 +202,11 @@ jobs:
           context: .
           platforms: linux/arm/v7
           push: true
+          labels: |
+            name: ${{ env.APP }}
+            maintainer: ${{ env.USER }} <${{ env.EMAIL }}>
+            version: ${{ needs.release.outputs.new_version }}
+            architecture: arm7
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:latest-arm7
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}-arm7
