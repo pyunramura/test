@@ -1,5 +1,5 @@
 ---
-name: Validate Dockerfile for Dependabot use
+name: Lint Markdown files
 
 on:
   push:
