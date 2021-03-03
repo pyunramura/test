@@ -132,7 +132,6 @@ jobs:
 
       - name: Extract Major and Minor V from semver
         id: maj-min-version
-        if: ${{ needs.release.outputs.new_version != 0.0.* }}
         shell: bash
         run: |
           TAG_MAJ=$(echo ${{ needs.release.outputs.new_version }} | cut -f 1 -d '.')
@@ -159,22 +158,22 @@ jobs:
             ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_maj }}
             ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_min }}
 
-      # - name: Build and push arm64
-      #   uses: docker/build-push-action@v2
-      #   if: ${{ needs.release.outputs.new_version != null }}
-      #   with:
-      #     context: .
-      #     platforms: linux/arm64
-      #     push: true
-      #     tags: |
-      #       ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:latest-arm
-      #       ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}-arm
-      #       ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_maj }}-arm
-      #       ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_min }}-arm
-      #       ghcr.io/${{ github.repository_owner }}/${{ env.APP }}:latest-arm
-      #       ghcr.io/${{ github.repository_owner }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}-arm
-      #       ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_maj }}-arm
-      #       ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_min }}-arm
+      - name: Build and push arm64
+        uses: docker/build-push-action@v2
+        if: ${{ needs.release.outputs.new_version != null }}
+        with:
+          context: .
+          platforms: linux/arm64
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:latest-arm
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}-arm
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_maj }}-arm
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_min }}-arm
+            ghcr.io/${{ github.repository_owner }}/${{ env.APP }}:latest-arm
+            ghcr.io/${{ github.repository_owner }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}-arm
+            ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_maj }}-arm
+            ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ steps.maj-min-version.outputs.tag_min }}-arm
 
       # - name: Build and push arm7
       #   uses: docker/build-push-action@v2
