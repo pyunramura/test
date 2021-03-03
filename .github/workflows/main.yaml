@@ -2,8 +2,7 @@
 name: Create Release
 
 on:
-  # push:
-  pull_request:
+  push:
     paths-ignore:
       - '.github/workflows/*'
     branches: [ main ]
