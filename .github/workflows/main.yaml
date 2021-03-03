@@ -157,8 +157,8 @@ jobs:
           push: true
           labels: |
             name: test
-            maintainer: "Test User <testuser@testsite.org>"
-            version: "1.2.13"
+            maintainer: Test User <testuser@testsite.org>
+            version: 1.2.13
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}
