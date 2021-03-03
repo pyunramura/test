@@ -9,7 +9,8 @@ on:
   # pull_request:
   #   types: [ assigned, opened, synchronize, reopened ]
   #   branches: [ main ]
-
+env:
+  APP: test
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -106,8 +107,6 @@ jobs:
   ship:
     needs: [ lint, release ]
     runs-on: ubuntu-latest
-    # env:
-    #   - app: test-app
     steps:
       - uses: actions/checkout@v2
 
@@ -141,7 +140,7 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/test:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ needs.release.outputs.new_version }}
             ghcr.io/${{ github.repository_owner }}/test:latest
-            ghcr.io/${{ github.repository_owner }}/test:${{ needs.release.outputs.new_version }}
+            ghcr.io/${{ github.repository_owner }}/${{ env.APP }}:${{ needs.release.outputs.new_version }}
 
       - name: Update repo description
         uses: peter-evans/dockerhub-description@v2
