@@ -132,6 +132,7 @@ jobs:
 
       - name: Extract Major and Minor V from semver
         id: maj-min-version
+        if: ${{ needs.release.outputs.new_version != 0.0.* }}
         shell: bash
         run: |
           TAG_MAJ=$(echo ${{ needs.release.outputs.new_version }} | cut -f 1 -d '.')
