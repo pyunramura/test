@@ -5,11 +5,14 @@ name: Validate Yaml
 on:
   push:
     branches: [ main ]
+    paths:
+      - '.github/**'
+    
   pull_request:
     paths:
+      - '!.github/**'
       - '**/*.yaml'
       - '**/*.yml'
-      - '!.github/**'
 jobs:
   validate:
     runs-on: ubuntu-latest
