@@ -10,7 +10,7 @@ RUN chmod 755 /run
 
 RUN mkdir -p /var/www/localhost/htdocs /var/log/lighttpd /var/lib/lighttpd
 
-RUN sed -i -r 's#\#.*server.port.*=.*#server.port         = 80#g' /etc/lighttpd/lighttpd.conf
+RUN sed -i -r 's#\#.*server.port.*=.*#server.port          = 80#g' /etc/lighttpd/lighttpd.conf
 
 RUN sed -i -r 's#\#.*server.event-handler = "linux-sysepoll".*#server.event-handler = "linux-sysepoll"#g' /etc/lighttpd/lighttpd.conf
 
