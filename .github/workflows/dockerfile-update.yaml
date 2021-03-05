@@ -13,10 +13,9 @@ jobs:
     name: Update Dockerfiles
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout the repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: 📤 Update Dockerfiles
+      - name: Update Dockerfile
         uses: ludeeus/dockerfile-updater@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
