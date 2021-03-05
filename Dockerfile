@@ -1,12 +1,12 @@
 FROM alpine:3.13
 
-COPY run /
+COPY run.sh /
 
 RUN \
   apk add --no-cache \
     lighttpd=1.4.57-r0
 
-RUN chmod 755 /run
+RUN chmod 755 /run.sh
 
 RUN mkdir -p /var/www/localhost/htdocs /var/log/lighttpd /var/lib/lighttpd
 
@@ -27,4 +27,4 @@ VOLUME /var/www/localhost/htdocs
 
 ENTRYPOINT ["/usr/sbin/lighttpd", "-D"]
 
-CMD [/run]
+CMD [/run.sh]
