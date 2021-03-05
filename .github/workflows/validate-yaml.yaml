@@ -7,7 +7,7 @@ on:
     branches: [ main ]
   pull_request:
     paths:
-      - '!.github/**'
+      - '! .github/**'
       - '**/*.yaml'
       - '**/*.yml'
 jobs:
