@@ -4,7 +4,7 @@ COPY run.sh /
 
 RUN \
   apk add --no-cache \
-    lighttpd:1.4.56-r0
+    lighttpd=1.4.56-r0
 
 RUN chmod 755 /run.sh
 
