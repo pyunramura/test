@@ -20,27 +20,27 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout the repository
+      - name: Checkout the repository
         uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: 📥 Lint Dockerfile
+      - name: Lint Dockerfile
         uses: luke142367/Docker-Lint-Action@v1.0.0
         with:
           target: Dockerfile
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 📥 Lint Yaml
+      - name: Lint Yaml
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: "."
           config_file: "./.github/yamllint_config.yaml"
 
-      - name: 📥 Lint Shell Script
+      - name: Lint Shell Script
         uses: reviewdog/action-shellcheck@v1
         with:
           pattern: "*.sh"
-          level: "error"
+          level: "warning"
