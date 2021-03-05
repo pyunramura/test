@@ -10,7 +10,7 @@ on:
       - '**/*.md'
     branches: [ main ]
 env:
-  APP: wireguard
+  APP: test
   USER: ${{ github.repository_owner }}
   EMAIL: ${{ github.repository_owner }}@users.noreply.github.com
 jobs:
