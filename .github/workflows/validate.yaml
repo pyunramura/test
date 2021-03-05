@@ -42,5 +42,5 @@ jobs:
       - name: 📥 Lint Shell Script
         uses: reviewdog/action-shellcheck@v1
         with:
-          pattern: "'run' -o -name '*.sh'"
+          pattern: "*.sh"
           level: "error"
