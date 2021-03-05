@@ -19,4 +19,4 @@ jobs:
         uses: ludeeus/dockerfile-updater@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pr_title: "⚓ chore(deps): update Dockerfile dep. [package] from [from_version] to [to_version]"
+          pr_title: "⚓ chore(deps): update Dockerfile dependency"
