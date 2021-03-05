@@ -1,4 +1,4 @@
-name: Update Dockerfiles
+name: Dockerfile Update
 # From: https://github.com/ludeeus/dockerfile-updater
 
 on:
